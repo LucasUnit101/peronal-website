@@ -1,11 +1,14 @@
 'use client';
+
 import Aurora from './_components/Aurora';
 import MagicBento from './_components/MagicBento';
 import PillNav from './_components/PillNav';
 import ShinyText from './_components/ShinyText';
-import { VscHome, VscArchive, VscAccount, VscSettingsGear } from 'react-icons/vsc';
 import Carousel from './_components/Carousel';
-import logo from '../public/logo.png';
+import HorizontalScroll from './_components/HorizontalScroll';
+
+import { VscHome, VscArchive, VscAccount, VscSettingsGear } from 'react-icons/vsc';
+
 
 
 
@@ -19,12 +22,12 @@ const items = [
 export default function Home() {
   return (
     <section>
-      <Aurora colorStops={["#3A29FF", "#5f37ff", "#a457f8"]} blend={0.5} amplitude={0.5} speed={0.5}/>
+      <Aurora colorStops={["#3A29FF", "#5f37ff", "#a457f8"]} blend={0.5} amplitude={1} speed={0.5}/>
       <div className="px-6">
         <nav className="flex flex-row items-center w-full h-16">
           <div className="w-2/3 flex justify-end">
             <PillNav
-              logo={logo}
+              logo="/logo.png"
               logoAlt="Company Logo"
               items={[
                 { label: "Home", href: "#" },
@@ -73,6 +76,10 @@ export default function Home() {
             round={false}
           />
         </div>
+          <HorizontalScroll />
+        <footer>
+          Hello poopt
+        </footer>
       </div>
     </section>
   );

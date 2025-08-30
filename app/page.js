@@ -18,60 +18,62 @@ const items = [
 
 export default function Home() {
   return (
-    <div>
-      <Aurora
-        colorStops={["#3A29FF", "#5f37ff", "#a457f8"]}
-        blend={0.5}
-        amplitude={0.5}
-        speed={0.5}
-      />
-      <MagicBento 
-        textAutoHide={true}
-        enableStars={true}
-        enableSpotlight={true}
-        enableBorderGlow={true}
-        enableTilt={true}
-        enableMagnetism={true}
-        clickEffect={true}
-        spotlightRadius={300}
-        particleCount={12}
-        glowColor="132, 0, 255"
-      />
-      <div style={{ height: '600px', position: 'relative' }}>
-        <Carousel
-          baseWidth={300}
-          autoplay={true}
-          autoplayDelay={3000}
-          pauseOnHover={true}
-          loop={true}
-          round={false}
+    <section>
+      <Aurora colorStops={["#3A29FF", "#5f37ff", "#a457f8"]} blend={0.5} amplitude={0.5} speed={0.5}/>
+      <div className="px-6">
+        <nav className="flex flex-row items-center w-full h-16">
+          <div className="w-2/3 flex justify-end">
+            <PillNav
+              logo={logo}
+              logoAlt="Company Logo"
+              items={[
+                { label: "Home", href: "#" },
+                { label: "About", href: "#" },
+                { label: "Projects", href: "#" },
+                { label: "Contact", href: "#" },
+              ]}
+              activeHref="/"
+              className="custom-nav"
+              ease="power2.easeOut"
+              baseColor="#000000"
+              pillColor="rgba(255,255,255,0.2)"
+              hoveredPillTextColor="#ffffff"
+              pillTextColor="#ffffff"
+            />
+          </div>
+          <div className="w-1/3 flex justify-end">
+            <ShinyText 
+              text='Press "/" for terminal navigation'
+              disabled={false}
+              speed={3}
+              className="text-lg font-bold whitespace-nowrap"
+            />
+          </div>
+        </nav>
+
+        <MagicBento 
+          textAutoHide={true}
+          enableStars={true}
+          enableSpotlight={true}
+          enableBorderGlow={true}
+          enableTilt={true}
+          enableMagnetism={true}
+          clickEffect={true}
+          spotlightRadius={300}
+          particleCount={12}
+          glowColor="132, 0, 255"
         />
+        <div style={{ height: '600px', position: 'relative' }}>
+          <Carousel
+            baseWidth={300}
+            autoplay={true}
+            autoplayDelay={3000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
+        </div>
       </div>
-      <div>
-        <PillNav
-          logo={logo}
-          logoAlt="Company Logo"
-          items={[
-            { label: 'Home', href: '#' },
-            { label: 'About', href: '#' },
-            { label: 'Projects', href: '#' },
-            { label: 'Contact', href: '#' }
-          ]}
-          activeHref="/"
-          className="custom-nav"
-          ease="power2.easeOut"
-          baseColor="#000000"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#000000"
-        />
-      </div>
-      <ShinyText 
-        text='Press "/" for terminal navigation'
-        disabled={false}
-        speed={3}
-        className="text-4xl font-bold mt-8 text-center"
-      />
-    </div>
+    </section>
   );
 }

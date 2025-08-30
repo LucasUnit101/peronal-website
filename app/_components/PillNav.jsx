@@ -12,7 +12,7 @@ const PillNav = ({
   className = "",
   ease = "power3.easeOut",
   baseColor = "#fff",
-  pillColor = "#060010",
+  pillColor = "rgba(255,255,255,0.2)", // transparent by default
   hoveredPillTextColor = "#060010",
   pillTextColor,
   onMobileMenuClick,
@@ -94,12 +94,11 @@ const PillNav = ({
     };
 
     layout();
-
     const onResize = () => layout();
     window.addEventListener("resize", onResize);
 
-    if ((document).fonts?.ready) {
-      (document).fonts.ready.then(layout).catch(() => {});
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(layout).catch(() => {});
     }
 
     const menu = mobileMenuRef.current;
@@ -241,12 +240,18 @@ const PillNav = ({
   };
 
   return (
-    <div className="absolute top-[1em] z-[1000] w-full left-0 md:w-auto md:left-auto">
+    <div className="z-[1000]">
       <nav
-        className={`w-full md:w-max flex items-center justify-between md:justify-start box-border px-4 md:px-0 ${className}`}
+        className={`w-full md:w-max flex items-center justify-between md:justify-start box-border px-4 md:px-0 rounded-full shadow-lg ${className}`}
         aria-label="Primary"
-        style={cssVars}
+        style={{
+          ...cssVars,
+          background: "rgba(0,0,0,0.3)", // translucent navbar
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
       >
+        {/* Logo + pills unchanged except styles */}
         {isRouterLink(items?.[0]?.href) ? (
           <Link
             href={items[0].href}
@@ -259,7 +264,9 @@ const PillNav = ({
             style={{
               width: "var(--nav-h)",
               height: "var(--nav-h)",
-              background: "var(--base, #000)",
+              background: "rgba(255,255,255,0.2)",
+              backdropFilter: "blur(1px)",
+              WebkitBackdropFilter: "blur(1px)",
             }}
           >
             <img
@@ -281,7 +288,9 @@ const PillNav = ({
             style={{
               width: "var(--nav-h)",
               height: "var(--nav-h)",
-              background: "var(--base, #000)",
+              background: "rgba(255,255,255,0.2)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
             }}
           >
             <img
@@ -298,7 +307,7 @@ const PillNav = ({
           className="relative items-center rounded-full hidden md:flex ml-2"
           style={{
             height: "var(--nav-h)",
-            background: "var(--base, #000)",
+            background: "transparent",
           }}
         >
           <ul
@@ -310,7 +319,10 @@ const PillNav = ({
               const isActive = activeHref === item.href;
 
               const pillStyle = {
-                background: "var(--pill-bg, #fff)",
+                background: "rgba(255,255,255,0.2)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                border: "1px solid rgba(255,255,255,0.3)",
                 color: "var(--pill-text, var(--base, #000))",
                 paddingLeft: "var(--pill-pad-x)",
                 paddingRight: "var(--pill-pad-x)",
@@ -402,7 +414,9 @@ const PillNav = ({
           style={{
             width: "var(--nav-h)",
             height: "var(--nav-h)",
-            background: "var(--base, #000)",
+            background: "rgba(255,255,255,0.2)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
           }}
         >
           <span
@@ -416,18 +430,24 @@ const PillNav = ({
         </button>
       </nav>
 
+      {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
         className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
         style={{
           ...cssVars,
-          background: "var(--base, #f0f0f0)",
+          background: "rgba(0,0,0,0.3)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       >
         <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
           {items.map((item) => {
             const defaultStyle = {
-              background: "var(--pill-bg, #fff)",
+              background: "rgba(255,255,255,0.2)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.3)",
               color: "var(--pill-text, #fff)",
             };
             const hoverIn = (e) => {
@@ -435,7 +455,7 @@ const PillNav = ({
               e.currentTarget.style.color = "var(--hover-text, #fff)";
             };
             const hoverOut = (e) => {
-              e.currentTarget.style.background = "var(--pill-bg, #fff)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.2)";
               e.currentTarget.style.color = "var(--pill-text, #fff)";
             };
 

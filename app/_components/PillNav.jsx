@@ -246,12 +246,12 @@ const PillNav = ({
         aria-label="Primary"
         style={{
           ...cssVars,
-          background: "rgba(0,0,0,0.3)", // translucent navbar
+          background: "rgba(0,0,0,0.3)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
         }}
       >
-        {/* Logo + pills unchanged except styles */}
+
         {isRouterLink(items?.[0]?.href) ? (
           <Link
             href={items[0].href}
@@ -430,7 +430,6 @@ const PillNav = ({
         </button>
       </nav>
 
-      {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
         className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"

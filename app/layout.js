@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Aurora colorStops={["#3A29FF", "#5f37ff", "#a457f8"]} blend={0.5} amplitude={1} speed={0.5}/>
-        <nav className="flex flex-row items-center w-full h-16">
+        <nav className="flex flex-row items-center w-full h-16 px-12 py-14">
           <div className="w-2/3 flex justify-end">
             <PillNav
               logo="/logo.png"
@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
         </nav>
         {children}
         <footer>
-          Hello poopt
+          Test Footer
         </footer>
       </body>
     </html>

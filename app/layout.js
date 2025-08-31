@@ -1,6 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Aurora from './_components/Aurora';
+import PillNav from './_components/PillNav';
+import ShinyText from './_components/ShinyText';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,10 +23,41 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Aurora colorStops={["#3A29FF", "#5f37ff", "#a457f8"]} blend={0.5} amplitude={1} speed={0.5}/>
+        <nav className="flex flex-row items-center w-full h-16">
+          <div className="w-2/3 flex justify-end">
+            <PillNav
+              logo="/logo.png"
+              logoAlt="Company Logo"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Experiences", href: "/experiences" },
+                { label: "Projects", href: "/projects" },
+                { label: "Contact Me", href: "#" },
+              ]}
+              activeHref="/"
+              className="custom-nav"
+              ease="power2.easeOut"
+              baseColor="#000000"
+              pillColor="rgba(255,255,255,0.2)"
+              hoveredPillTextColor="#ffffff"
+              pillTextColor="#ffffff"
+            />
+          </div>
+          <div className="w-1/3 flex justify-end">
+            <ShinyText 
+              text='Press "/" for terminal navigation'
+              disabled={false}
+              speed={3}
+              className="text-lg font-bold whitespace-nowrap"
+            />
+          </div>
+        </nav>
         {children}
+        <footer>
+          Hello poopt
+        </footer>
       </body>
     </html>
   );
